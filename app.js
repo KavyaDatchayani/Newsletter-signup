@@ -39,7 +39,7 @@ app.post("/", function(req, res) {
   const lastName = req.body.lastName;
   const email = req.body.email;
 
-  const listId = MLIST_ID;
+  const listId = "540612ed20";
 
   console.log(firstName);
   console.log(lastName);
@@ -59,7 +59,7 @@ async function addMember() {
       console.log("successfully added contact as an audience member.");
       res.sendFile(__dirname + "/success.html");
     },
-    (reason) => {
+   (reason) => {
       res.sendFile(__dirname + "/failure.html");
     },
   );
