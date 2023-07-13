@@ -40,7 +40,7 @@ app.post("/", function(req, res) {
   const lastName = req.body.lastName;
   const email = req.body.email;
 
-  const listId = MLIST_ID;
+  const listId = "540612ed20";
 
   console.log(firstName);
   console.log(lastName);
