@@ -45,26 +45,34 @@ app.post("/", function(req, res) {
   console.log(lastName);
   console.log(email);
 
-//This creates a function for us to run later that sends the info to MailChimp.  This comes straight from the MailChimp guide.
-async function addMember() {
-  const response = await mailchimp.lists.addListMember(listId, {
-    email_address: email,
-    status: "subscribed",
-    merge_fields: {
-      FNAME: firstName,
-      LNAME: lastName
+  const data = {
+    members: [
+        {
+            email_address: email,
+            status: "subscribed",
+            merge_fields: {
+                FNAME: firstName,
+                LNAME: lastName
+            }
+        }
+    ]
+};
+
+const run = async () => {
+    const response = await client.lists.batchListMembers(listId, data);
+    console.log(response.error_count);
+    if (response.error_count === 0) {
+        res.sendFile(__dirname + "/success.html");
     }
-  }).then(
-    (value) => {
-      console.log("successfully added contact as an audience member.");
-      res.sendFile(__dirname + "/success.html");
-    },
-   (reason) => {
-      res.sendFile(__dirname + "/failure.html");
-    },
-  );
-}
-addMember();
+    else {
+        res.sendFile(__dirname + "/failure.html");
+    }
+  };
+
+
+
+run();
+
 });
 
 app.post("/failure", (req, res) => {
