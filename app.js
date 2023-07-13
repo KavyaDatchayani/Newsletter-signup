@@ -24,6 +24,7 @@ const MAPI_SERVER = process.env.API_SERVER
 mailchimp.setConfig({
   apiKey: MAPI_KEY,
   server: MAPI_SERVER,
+  listId: MLIST_ID
 });
 
 
@@ -39,40 +40,32 @@ app.post("/", function(req, res) {
   const lastName = req.body.lastName;
   const email = req.body.email;
 
-  const listId = "540612ed20";
+  const listId = MLIST_ID;
 
   console.log(firstName);
   console.log(lastName);
   console.log(email);
 
-  const data = {
-    members: [
-        {
-            email_address: email,
-            status: "subscribed",
-            merge_fields: {
-                FNAME: firstName,
-                LNAME: lastName
-            }
-        }
-    ]
-};
-
-const addMember = async () => {
-    const response = await mailchimp.lists.addListMember(listId, data);
-    console.log(response.error_count);
-    if (response.error_count === 0) {
-        res.sendFile(__dirname + "/success.html");
+//This creates a function for us to run later that sends the info to MailChimp.  This comes straight from the MailChimp guide.
+async function addMember() {
+  const response = await mailchimp.lists.addListMember(listId, {
+    email_address: email,
+    status: "subscribed",
+    merge_fields: {
+      FNAME: firstName,
+      LNAME: lastName
     }
-    else {
-        res.sendFile(__dirname + "/failure.html");
-    }
-  };
-
-
-
-  addMember();
-
+  }).then(
+    (value) => {
+      console.log("successfully added contact as an audience member.");
+      res.sendFile(__dirname + "/success.html");
+    },
+   (reason) => {
+      res.sendFile(__dirname + "/failure.html");
+    },
+  );
+}
+addMember();
 });
 
 app.post("/failure", (req, res) => {
