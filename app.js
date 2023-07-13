@@ -58,8 +58,8 @@ app.post("/", function(req, res) {
     ]
 };
 
-const run = async () => {
-    const response = await mailchimp.lists.batchListMembers(listId, data);
+const addMember = async () => {
+    const response = await mailchimp.lists.addListMember(listId, data);
     console.log(response.error_count);
     if (response.error_count === 0) {
         res.sendFile(__dirname + "/success.html");
@@ -71,7 +71,7 @@ const run = async () => {
 
 
 
-run();
+  addMember();
 
 });
 
