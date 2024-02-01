@@ -7,11 +7,10 @@ require("dotenv").config()
 
 const app = express();
 
-app.use(express.static('public'));
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(express.static('public'));
 
 const MAPI_KEY = process.env.apiKey
 
@@ -29,13 +28,13 @@ mailchimp.setConfig({
 
 
 //  sending the signup page when someone visits the page
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.sendFile(__dirname + "/sign-up.html");
 
 })
 
 //Our post function for after they hit submit.  Grabs the data they sent to us so that we can send it to MailChimp.
-app.post("/", function(req, res) {
+app.post("/", function (req, res) {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
@@ -46,26 +45,28 @@ app.post("/", function(req, res) {
   console.log(lastName);
   console.log(email);
 
-//This creates a function for us to run later that sends the info to MailChimp.  This comes straight from the MailChimp guide.
-async function addMember() {
-  const response = await mailchimp.lists.addListMember(listId, {
-    email_address: email,
-    status: "subscribed",
-    merge_fields: {
-      FNAME: firstName,
-      LNAME: lastName
-    }
-  }).then(
-    (value) => {
-      console.log("successfully added contact as an audience member.");
-      res.sendFile(__dirname + "/success.html");
-    },
-   (reason) => {
-      res.sendFile(__dirname + "/failure.html");
-    },
-  );
-}
-addMember();
+  //This creates a function for us to run later that sends the info to MailChimp.  This comes straight from the MailChimp guide.
+  async function addMember() {
+    const response = await mailchimp.lists.addListMember(listId, {
+      email_address: email,
+      status: "subscribed",
+      merge_fields: {
+        FNAME: firstName,
+        LNAME: lastName
+      }
+    }).then(
+      (value) => {
+        console.log("successfully added contact as an audience member.");
+        res.sendFile(__dirname + "/success.html");
+
+      },
+      (reason) => {
+        res.sendFile(__dirname + "/failure.html");
+
+      },
+    );
+  }
+  addMember();
 });
 
 app.post("/failure", (req, res) => {
@@ -73,6 +74,6 @@ app.post("/failure", (req, res) => {
 });
 
 //Our listener that opens the server
-app.listen(process.env.PORT || 3000, function() {
-console.log("iam running without problem relax darling");
+app.listen(process.env.PORT || 3000, function () {
+  console.log("iam running without problem relax darling");
 });
