@@ -34,15 +34,17 @@ body {
   border-color: #b5c99a;
 }
 h1 {
-  color: #5c8984;
+  color: #191919;
 }
 .showBtn {
-  background-color: #b5c99a;
-  border-radius: 2px #5c8984;
+  background-color: #fbe5e5;
+  color: #f94892;
+  border-radius: 10px;
+  border-color: #f94892;
 }
 .showBtn:hover,
 :checked {
-  background-color: #5c8984;
+  background-color: #f94892;
 }
 
 /* successfull page style */
@@ -50,5 +52,6 @@ h1 {
   padding: 50px 20px 20px 30px;
 }
 .lead {
+  color: #181818;
   padding: 10px 20px 20px 30px;
 }

@@ -1,0 +1,8 @@
+html,
+body {
+  height: 100%;
+  background-image: url(/image/3.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
