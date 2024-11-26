@@ -1,14 +1,22 @@
 html,
 body {
   height: 100%;
-  background-image: url(/image/2.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+}
+
+body {
+  background: url(/image/2.jpg) center center / cover no-repeat;
+}
+
+.container {
+  backdrop-filter: blur(30px);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  width: auto;
 }
 
 .form-signin {
-  max-width: 330px;
+  max-width: 350px;
   padding: 1rem;
 }
 
@@ -28,6 +36,10 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+form input:focus {
+  background-color: transparent;
+}
 .form-signin input[type="text"]:hover,
 .form-signin input[type="email"]:hover,
 .form-signin input[type="password"]:hover {
@@ -41,17 +53,15 @@ h1 {
   color: #f94892;
   border-radius: 10px;
   border-color: #f94892;
+  width: 150px;
 }
 .showBtn:hover,
 :checked {
+  border-color: #f94892;
   background-color: #f94892;
 }
 
 /* successfull page style */
 .display-4 {
   padding: 50px 20px 20px 30px;
-}
-.lead {
-  color: #181818;
-  padding: 10px 20px 20px 30px;
 }
