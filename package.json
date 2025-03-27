@@ -12,7 +12,7 @@
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "async": "^3.2.4",
     "body-parser": "^2.2.0",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.9",
     "express": "^4.21.2",
     "mailchimp": "^0.2.0"
