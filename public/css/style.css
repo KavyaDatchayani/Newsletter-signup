@@ -1,67 +1,68 @@
-html,
 body {
-  height: 100%;
-}
-
-body {
-  background: url(/image/2.jpg) center center / cover no-repeat;
+  background-color: #252525;
+  background: url(/image/2.png) center center / cover no-repeat;
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
-  backdrop-filter: blur(30px);
+  max-width: 500px;
+  width: 80%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+
+  backdrop-filter: blur(10px);
+  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  width: auto;
+  text-align: center;
 }
 
-.form-signin {
-  max-width: 350px;
-  padding: 1rem;
+.form-control {
+  font-size: 17px;
+  border-radius: 8px;
 }
 
-.form-signin .form-floating:focus-within {
-  z-index: 2;
-}
-
-.form-signin input[type="email"] {
+.form-control:focus {
   border-color: #5c8984;
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+  box-shadow: none;
 }
 
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-form input:focus {
-  background-color: transparent;
-}
-.form-signin input[type="text"]:hover,
-.form-signin input[type="email"]:hover,
-.form-signin input[type="password"]:hover {
-  border-color: #b5c99a;
-}
-h1 {
-  color: #191919;
-}
 .showBtn {
-  background-color: #fbe5e5;
-  color: #f94892;
+  background-color: #36e68b;
+  color: white;
   border-radius: 10px;
-  border-color: #f94892;
-  width: 150px;
-}
-.showBtn:hover,
-:checked {
-  border-color: #f94892;
-  background-color: #f94892;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  transition: 0.3s ease-in-out;
 }
 
-/* successfull page style */
-.display-4 {
-  padding: 50px 20px 20px 30px;
+.showBtn:hover {
+  background-color: #2dc677;
+  color: white;
+}
+
+.footer-text {
+  color: #252525;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+}
+
+@media (max-width: 576px) {
+  .container {
+    max-width: 350px;
+    padding: 15px;
+  }
+
+  .showBtn {
+    font-size: 16px;
+  }
 }
